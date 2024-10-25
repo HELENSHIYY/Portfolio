@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的作品集</title>
+    <title>MY PORTFOLIO</title>
     <style>
         /* 引入字体（请确保您有合法使用 Futura 字体的权限） */
         @font-face {
@@ -23,44 +23,44 @@
             padding: 0;
         }
 
-        /* 标题样式 */
+        /* 标题部分样式 */
         .intro {
-            margin: 10px;
+            margin-left: 25%; /* 左侧留白，约为页面的左四分之一 */
+            margin-right: 25%; /* 右侧留白 */
             text-align: left; /* 左对齐 */
+            margin-top: 50px; /* 顶部间距 */
         }
 
         .intro h1 {
             font-size: 65px;
-            margin-top: 50px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .intro h2 {
             font-size: 30px;
-            margin-top: 5px;
-            margin-bottom: 5px;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         /* 作品集容器样式 */
         .portfolio-container {
             display: flex;
-            justify-content: space-between; /* 均匀分布 */
+            justify-content: center; /* 水平居中 */
             align-items: flex-start;
-            margin: 0 20px; /* 左右外边距 */
+            margin: 50px 10%; /* 与上方文字的间距，以及左右留白 */
         }
 
         .portfolio-item {
-            flex: 1; /* 均分可用空间 */
-            margin: 0 10px; /* 左右间距 */
+            margin: 0 20px; /* 左右间距，减少图片之间的间隔 */
             text-align: left; /* 左对齐 */
         }
 
         .portfolio-image {
-            height: 200px; /* 固定高度 */
-            width: auto; /* 宽度自适应 */
+            height: 250px; /* 图片高度加大 */
+            width: auto;
             border-radius: 8px;
             transition: transform 0.3s;
-            display: block; /* 将图片显示为块级元素 */
+            display: block;
             margin-bottom: 10px; /* 图片与标题之间的间距 */
         }
 
@@ -74,7 +74,7 @@
             font-weight: bold;
             word-wrap: break-word; /* 自动换行 */
             overflow-wrap: break-word;
-            max-width: 100%; /* 不超过容器宽度 */
+            max-width: 100%;
         }
 
         /* 链接样式 */
@@ -90,13 +90,15 @@
         <h2>I'm Helen Shi</h2>
         <h2>A 2nd-year Design Engineering student</h2>
         <h2>at Imperial College London</h2>
+        <h2>Here are three PDFs showcasing my work from 2024.</h2>
+        
     </div>
 
     <div class="portfolio-container">
         <!-- 第一个作品集项 -->
         <div class="portfolio-item">
             <a href="Engineering_Camp.pdf" target="_blank">
-                <img src="Engineering_Camp_cover.jpg" alt="Engineering_Camp" class="portfolio-image">
+                <img src="Engineering_Camp_cover.jpg" alt="Engineering Camp" class="portfolio-image">
             </a>
             <span class="portfolio-title">Brochure for the engineering camp (also responsible for projects planning and teaching sessions).</span>
         </div>
@@ -104,7 +106,7 @@
         <!-- 第二个作品集项 -->
         <div class="portfolio-item">
             <a href="DietaryHealth.pdf" target="_blank">
-                <img src="DietaryHealth_cover.jpg" alt="DietaryHealth" class="portfolio-image">
+                <img src="DietaryHealth_cover.jpg" alt="Dietary Health" class="portfolio-image">
             </a>
             <span class="portfolio-title">User Research and Concept Development</span>
         </div>
