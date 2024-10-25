@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MY_PORTFOLIO</title>
     <style>
-        /* 引入字体（请确保您有合法使用 Futura 字体的权限） */
         @font-face {
             font-family: 'Futura';
             src: url('Futura.woff2') format('woff2'),
@@ -14,21 +13,19 @@
             font-style: normal;
         }
 
-        /* 全局样式 */
         body {
             font-family: 'Futura', sans-serif;
-            background-color: #121212; /* 非纯黑色背景 */
-            color: #FFFFFF; /* 纯白色文字 */
+            background-color: #121212;
+            color: #FFFFFF;
             margin: 0;
             padding: 0;
         }
 
-        /* 标题部分样式 */
         .intro {
-            margin-left: 25%; /* 左侧留白，约为页面的左四分之一 */
-            margin-right: 25%; /* 右侧留白 */
-            text-align: left; /* 左对齐 */
-            margin-top: 50px; /* 顶部间距 */
+            margin-left: 25%;
+            margin-right: 25%;
+            text-align: left;
+            margin-top: 50px;
         }
 
         .intro h1 {
@@ -42,26 +39,29 @@
             margin-bottom: 10px;
         }
 
-        /* 作品集容器样式 */
         .portfolio-container {
             display: flex;
-            justify-content: center; /* 水平居中 */
+            justify-content: flex-start; /* 改为左对齐 */
             align-items: flex-start;
-            margin: 50px 10%; /* 与上方文字的间距，以及左右留白 */
+            margin: 50px 10%;
         }
 
         .portfolio-item {
-            margin: 0 20px; /* 左右间距，减少图片之间的间隔 */
-            text-align: left; /* 左对齐 */
+            margin: 0 20px;
+            text-align: left;
+        }
+
+        .portfolio-item:first-child {
+            margin-left: 10%; /* 为第一个图片项添加左侧外边距 */
         }
 
         .portfolio-image {
-            height: 250px; /* 图片高度加大 */
+            height: 250px;
             width: auto;
             border-radius: 8px;
             transition: transform 0.3s;
             display: block;
-            margin-bottom: 10px; /* 图片与标题之间的间距 */
+            margin-bottom: 10px;
         }
 
         .portfolio-image:hover {
@@ -70,17 +70,16 @@
 
         .portfolio-title {
             font-size: 16px;
-            color: #FFFFFF; /* 纯白色文字 */
+            color: #FFFFFF;
             font-weight: bold;
-            word-wrap: break-word; /* 自动换行 */
+            word-wrap: break-word;
             overflow-wrap: break-word;
             max-width: 100%;
         }
 
-        /* 链接样式 */
         a {
             text-decoration: none;
-            color: inherit; /* 继承父元素的文字颜色 */
+            color: inherit;
         }
     </style>
 </head>
