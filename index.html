@@ -5,21 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #f5f5f5; }
-        .portfolio-item { margin: 20px; padding: 20px; border: 1px solid #ccc; display: inline-block; }
-        a { text-decoration: none; color: #333; font-weight: bold; }
+        @font-face {
+            font-family: 'Futura';
+            src: url('fonts/Futura.woff2') format('woff2'),
+                 url('fonts/Futura.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Futura', sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .portfolio-item {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .portfolio-image {
+            width: 300px;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .portfolio-image:hover {
+            transform: scale(1.05);
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            font-size: 24px;
+        }
     </style>
 </head>
 <body>
     <h1>My Portfolio</h1>
+
     <div class="portfolio-item">
-        <a href="SpiceStream.pdf" target="_blank">Portfolio PDF 1</a>
+        <a href="SpiceStream.pdf" target="_blank">
+            <img src="images/SpiceStream_cover.jpg" alt="SpiceStream Portfolio" class="portfolio-image">
+            <span>SpiceStream Portfolio</span>
+        </a>
     </div>
+
     <div class="portfolio-item">
-        <a href="DietaryHealth.pdf" target="_blank">Portfolio PDF 2</a>
+        <a href="DietaryHealth.pdf" target="_blank">
+            <img src="images/DietaryHealth_cover.jpg" alt="Dietary Health Portfolio" class="portfolio-image">
+            <span>Dietary Health Portfolio</span>
+        </a>
     </div>
+
     <div class="portfolio-item">
-        <a href="Engineering Camp.pdf" target="_blank">Portfolio PDF 3</a>
+        <a href="Engineering Camp.pdf" target="_blank">
+            <img src="images/EngineeringCamp_cover.jpg" alt="Engineering Camp Portfolio" class="portfolio-image">
+            <span>Engineering Camp Portfolio</span>
+        </a>
     </div>
 </body>
 </html>
