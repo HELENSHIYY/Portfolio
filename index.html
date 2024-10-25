@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <style>
+        /* 引入字体（请确保您有合法使用 Futura 字体的权限） */
         @font-face {
             font-family: 'Futura';
             src: url('fonts/Futura.woff2') format('woff2'),
@@ -13,6 +14,7 @@
             font-style: normal;
         }
 
+        /* 全局样式 */
         body {
             font-family: 'Futura', sans-serif;
             background-color: #f5f5f5;
@@ -26,6 +28,14 @@
             font-size: 48px;
             margin-top: 40px;
             margin-bottom: 40px;
+        }
+
+        /* 作品集容器样式 */
+        .portfolio-container {
+            display: flex;
+            flex-direction: row; /* 水平排列 */
+            justify-content: center; /* 水平居中 */
+            flex-wrap: wrap; /* 自动换行 */
         }
 
         .portfolio-item {
@@ -58,25 +68,30 @@
 <body>
     <h1>My Portfolio</h1>
 
-    <div class="portfolio-item">
-        <a href="SpiceStream.pdf" target="_blank">
-            <img src="images/SpiceStream_cover.jpg" alt="SpiceStream Portfolio" class="portfolio-image">
-            <span>SpiceStream Portfolio</span>
-        </a>
-    </div>
+    <div class="portfolio-container">
+        <!-- 第一个作品集项 -->
+        <div class="portfolio-item">
+            <a href="Engineering_Camp.pdf" target="_blank">
+                <img src="images/Engineering_Camp_cover.jpg" alt="工程营作品集" class="portfolio-image">
+                <span>Brochure created for the summer engineering camp (also responsible for projects Planning and teaching sessions).</span>
+            </a>
+        </div>
 
-    <div class="portfolio-item">
-        <a href="DietaryHealth.pdf" target="_blank">
-            <img src="images/DietaryHealth_cover.jpg" alt="Dietary Health Portfolio" class="portfolio-image">
-            <span>Dietary Health Portfolio</span>
-        </a>
-    </div>
+        <!-- 第二个作品集项 -->
+        <div class="portfolio-item">
+            <a href="DietaryHealth.pdf" target="_blank">
+                <img src="images/DietaryHealth_cover.jpg" alt="饮食健康作品集" class="portfolio-image">
+                <span>User Research and Concept Devlopment</span>
+            </a>
+        </div>
 
-    <div class="portfolio-item">
-        <a href="Engineering Camp.pdf" target="_blank">
-            <img src="images/EngineeringCamp_cover.jpg" alt="Engineering Camp Portfolio" class="portfolio-image">
-            <span>Engineering Camp Portfolio</span>
-        </a>
+        <!-- 第三个作品集项 -->
+        <div class="portfolio-item">
+            <a href="SpiceStream.pdf" target="_blank">
+                <img src="images/SpiceStream_cover.jpg" alt="SpiceStream 作品集" class="portfolio-image">
+                <span>SpiceStream - Product Development</span>
+            </a>
+        </div>
     </div>
 </body>
 </html>
