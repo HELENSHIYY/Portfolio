@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY_PORTFOLIO</title>
+    <title>My Portfolio</title>
     <style>
+        /* 引入字体（请确保您有合法使用 Futura 字体的权限） */
         @font-face {
             font-family: 'Futura';
             src: url('Futura.woff2') format('woff2'),
@@ -13,55 +14,42 @@
             font-style: normal;
         }
 
+        /* 全局样式 */
         body {
             font-family: 'Futura', sans-serif;
-            background-color: #121212;
-            color: #FFFFFF;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             margin: 0;
-            padding: 0;
         }
 
-        .intro {
-            margin-left: 25%;
-            margin-right: 25%;
-            text-align: left;
-            margin-top: 50px;
+        h1 {
+            font-size: 48px;
+            margin-top: 40px;
+            margin-bottom: 40px;
         }
 
-        .intro h1 {
-            font-size: 65px;
-            margin-bottom: 20px;
-        }
-
-        .intro h2 {
-            font-size: 30px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
+        /* 作品集容器样式 */
         .portfolio-container {
             display: flex;
-            justify-content: flex-start; /* 改为左对齐 */
-            align-items: flex-start;
-            margin: 50px 10%;
+            flex-direction: row; /* 水平排列 */
+            justify-content: center; /* 水平居中 */
+            flex-wrap: wrap; /* 自动换行 */
         }
 
         .portfolio-item {
-            margin: 0 20px;
-            text-align: left;
-        }
-
-        .portfolio-item:first-child {
-            margin-left: 10%; /* 为第一个图片项添加左侧外边距 */
+            margin: 20px;
+            text-align: center;
+            width: 200px; /* 设置作品集项的宽度 */
         }
 
         .portfolio-image {
-            height: 250px;
-            width: auto;
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
             border-radius: 8px;
             transition: transform 0.3s;
-            display: block;
-            margin-bottom: 10px;
         }
 
         .portfolio-image:hover {
@@ -69,35 +57,35 @@
         }
 
         .portfolio-title {
+            display: block;
+            margin-top: 10px;
             font-size: 16px;
-            color: #FFFFFF;
+            color: #333;
             font-weight: bold;
-            word-wrap: break-word;
+            text-align: center;
+            word-wrap: break-word; /* 自动换行 */
             overflow-wrap: break-word;
-            max-width: 100%;
         }
 
+        /* 移除链接默认样式 */
         a {
             text-decoration: none;
-            color: inherit;
+        }
+
+        /* 新增：将第一个作品集项向右移动10像素 */
+        .portfolio-item:first-child {
+            margin-left: 30px; /* 您可以调整此值 */
         }
     </style>
 </head>
 <body>
-    <div class="intro">
-        <h1>Hi!</h1>
-        <h2>I'm Helen Shi</h2>
-        <h2>A 2nd-year Design Engineering student</h2>
-        <h2>at Imperial College London</h2>
-        <h2>Here are three PDFs showcasing my work from 2024.</h2>
-        
-    </div>
+    <h1>My Portfolio</h1>
 
     <div class="portfolio-container">
         <!-- 第一个作品集项 -->
         <div class="portfolio-item">
             <a href="Engineering_Camp.pdf" target="_blank">
-                <img src="Engineering_Camp_cover.jpg" alt="Engineering Camp" class="portfolio-image">
+                <img src="Engineering_Camp_cover.jpg" alt="Engineering_Camp" class="portfolio-image">
             </a>
             <span class="portfolio-title">Brochure for the engineering camp (also responsible for projects planning and teaching sessions).</span>
         </div>
@@ -105,7 +93,7 @@
         <!-- 第二个作品集项 -->
         <div class="portfolio-item">
             <a href="DietaryHealth.pdf" target="_blank">
-                <img src="DietaryHealth_cover.jpg" alt="Dietary Health" class="portfolio-image">
+                <img src="DietaryHealth_cover.jpg" alt="DietaryHealth" class="portfolio-image">
             </a>
             <span class="portfolio-title">User Research and Concept Development</span>
         </div>
