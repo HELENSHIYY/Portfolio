@@ -3,32 +3,12 @@ body {
     background-color: rgb(55, 56, 54);
     margin: 0;
     font-family: 'Avenir Next', sans-serif;
-}
-
-/* Main Description Styling */
-.description {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
     color: #ffffff;
-    z-index: 1;
-}
-
-.description h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-    font-weight: 300;
-}
-
-.description p {
-    font-size: 18px;
 }
 
 /* Back to Home Button Styling */
 .back-button {
-    position: absolute;
+    position: fixed;
     top: 20px;
     left: 20px;
     z-index: 1;
@@ -47,15 +27,29 @@ body {
     background-color: #ff007b;
 }
 
+/* Main Description Styling */
+.description {
+    text-align: center;
+    margin: 80px auto 20px auto; /* Adjust top margin to add space below the back button */
+    padding: 20px;
+    max-width: 800px;
+}
+
+.description h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.description p {
+    font-size: 18px;
+}
+
 /* Additional Description Styling */
 .description2 {
-    position: absolute;
-    padding-top: 20rem;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #ffffff;
+    text-align: center;
+    margin: 20px auto;
     font-size: 14px;
-    padding-bottom: 10rem;
 }
 
 /* PDF Viewer Styling */
@@ -68,10 +62,6 @@ body {
 
 /* Responsive Design */
 @media screen and (max-width: 767px) {
-    .description {
-        top: 50%;
-    }
-
     .description h1 {
         font-size: 24px;
     }
@@ -81,8 +71,10 @@ body {
     }
 
     .description2 {
-        padding-top: 10rem;
         font-size: 12px;
-        padding-bottom: 5rem;
+    }
+
+    .pdf-viewer {
+        height: 70vh; /* Reduce PDF height on smaller screens */
     }
 }
