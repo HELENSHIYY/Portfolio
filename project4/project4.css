@@ -1,12 +1,10 @@
-/* General Styles */
+/* Video Background */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Avenir Next', sans-serif;
-    background-color: #ffffff;
 }
 
-/* Video Background */
 video {
     position: fixed;
     top: 0;
@@ -39,13 +37,13 @@ video {
 /* Main Description */
 .description {
     position: relative;
+    top: 20vh;
+    margin: 0 auto;
     max-width: 800px;
-    margin: 20vh auto 40px auto;
     text-align: center;
     color: #000000;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8);
-    z-index: 1;
 }
 
 .description h1 {
@@ -63,8 +61,7 @@ video {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 40px auto;
-    max-width: 1200px;
+    margin: 40px 0;
 }
 
 .photos img {
@@ -73,19 +70,7 @@ video {
     border-radius: 8px;
 }
 
-/* Videos Section */
-.videos {
-    display: flex;
-    justify-content: center;
-    margin: 40px auto;
-}
-
-.videos video {
-    max-width: 80%;
-    border-radius: 8px;
-}
-
-/* Descriptions Below Photos and Videos */
+/* Description Below Photos and Videos */
 .description2, .description3 {
     max-width: 800px;
     margin: 0 auto 40px auto;
@@ -93,8 +78,18 @@ video {
     color: #000000;
     font-size: 18px;
     padding: 0 20px;
-    z-index: 1;
-    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Video Section */
+.videos {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.videos video {
+    max-width: 80%;
+    border-radius: 8px;
 }
 
 /* Responsive Design */
@@ -104,8 +99,8 @@ video {
     }
 
     .description p,
-    .description2 p,
-    .description3 p {
+    .description2,
+    .description3 {
         font-size: 16px;
     }
 
@@ -115,10 +110,5 @@ video {
 
     .videos video {
         max-width: 100%;
-    }
-
-    .back-button {
-        font-size: 14px;
-        padding: 8px 16px;
     }
 }
