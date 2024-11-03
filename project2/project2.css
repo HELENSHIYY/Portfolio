@@ -71,6 +71,33 @@ body {
     border: none;
 }
 
+/* Photos and Videos Section */
+.photos, .videos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+.photos img, .videos video {
+    width: 45%;
+    margin: 10px;
+    border-radius: 8px;
+    height: auto;
+    border: 2px solid #ccc; /* Add border to images and videos */
+    box-sizing: border-box; /* Include border in width calculation */
+}
+
+.photos img {
+    object-fit: cover;
+}
+
+.videos video {
+    object-fit: cover;
+}
+
+
 /* Responsive Design */
 @media screen and (max-width: 767px) {
     .description h1 {
