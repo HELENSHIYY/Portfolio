@@ -55,15 +55,20 @@ body {
 }
 
 .photos img, .videos video {
-    max-width: 45%;
+    width: 45%;
     margin: 10px;
     border-radius: 8px;
     height: auto;
+    border: 2px solid #ccc; /* Add border to images and videos */
+    box-sizing: border-box; /* Include border in width calculation */
 }
 
-/* Video Controls */
+.photos img {
+    object-fit: cover;
+}
+
 .videos video {
-    outline: none;
+    object-fit: cover;
 }
 
 /* Description Below Photos and Videos */
@@ -89,7 +94,7 @@ body {
     }
 
     .photos img, .videos video {
-        max-width: 90%;
+        width: 90%;
     }
 
     .back-button {
