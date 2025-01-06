@@ -10,7 +10,7 @@ body {
 
 /* Centered Content Wrapper */
 .content {
-    max-width: 1200px; /* 扩大最大宽度 */
+    max-width: 1200px;
     width: 100%;
     padding: 40px 20px;
     box-sizing: border-box;
@@ -52,74 +52,23 @@ body {
     font-size: 18px;
 }
 
-/* Additional Description Styling */
-.description2 {
-    text-align: center;
-    margin-bottom: 60px;
-    font-size: 14px;
-}
-
 /* PDF Container Styling */
 .pdf-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* 水平居中 */
-    justify-content: center; /* 垂直居中 */
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    padding: 20px 0; /* 增加上下间距 */
+    max-width: 100%;
+    padding: 20px 0;
     box-sizing: border-box;
-    overflow: hidden; /* 确保内容不溢出 */
+    overflow-x: hidden;
 }
 
 .pdf-container img {
-    max-width: 90%; /* 限制图片最大宽度 */
-    height: auto; /* 保持图片比例 */
-    margin: 20px 0; /* 增加图片间距 */
-    border: none; /* 移除边框 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
-}
-
-/* Photos and Videos Section */
-.photos, .videos {
-    display: flex;
-    justify-content: center;
-    margin: 40px auto;
-    width: 100%;
-    height: 90vh; /* 让视频占满视口高度 */
-}
-
-.videos video {
-    width: 100%; /* 占满宽度 */
-    height: 100%; /* 占满高度 */
-    object-fit: cover; /* 确保视频按比例裁剪 */
-    border: none; /* 移除边框 */
-    margin: 0; /* 移除间距 */
-    border-radius: 0; /* 移除圆角 */
-}
-
-/* Responsive Design */
-@media screen and (max-width: 767px) {
-    .description h1 {
-        font-size: 24px;
-    }
-
-    .description p {
-        font-size: 16px;
-    }
-
-    .description2 {
-        font-size: 12px;
-    }
-
-    .pdf-container {
-        padding: 10px 0; /* 减少间距 */
-    }
-
-    .pdf-container img {
-        max-width: 100%; /* 小屏幕下图片宽度为 100% */
-    }
-
-    .videos video {
-        height: 70vh; /* 小屏幕下调整视频高度 */
-    }
+    max-width: 90%;
+    height: auto;
+    margin: 20px 0;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
