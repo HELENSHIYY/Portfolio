@@ -6,6 +6,7 @@ body {
     color: #ffffff;
     display: flex;
     justify-content: center;
+    overflow-x: hidden; /* 禁止水平滚动条 */
 }
 
 /* Centered Content Wrapper */
@@ -14,6 +15,7 @@ body {
     width: 100%;
     padding: 40px 20px;
     box-sizing: border-box;
+    overflow-x: hidden; /* 禁止水平滚动条 */
 }
 
 /* Back to Home Button Styling */
@@ -52,17 +54,16 @@ body {
     font-size: 18px;
 }
 
-/* 视频容器 Section */
+/* 视频 Section */
 .videos video {
-    width: 80%; /* 视频宽度调整为 80% */
+    width: 70%; /* 视频宽度调整为 70% */
     height: auto; /* 保持高度按比例调整 */
-    object-fit: cover; /* 确保视频按比例裁剪 */
+    object-fit: contain; /* 确保视频按比例缩小 */
     border: none; /* 移除边框 */
     margin: 0 auto; /* 居中对齐 */
-    border-radius: 0; /* 移除圆角 */
 }
 
-/* PDF 容器 */
+/* PDF 容器 Section */
 .pdf-container {
     display: flex;
     flex-direction: column;
@@ -72,13 +73,13 @@ body {
     max-width: 100%;
     padding: 20px 0;
     box-sizing: border-box;
-    overflow-x: hidden;
+    overflow-x: hidden; /* 禁止水平滚动条 */
 }
 
 .pdf-container img {
     max-width: 90%; /* 确保图片宽度适配容器 */
     height: auto; /* 保持图片比例 */
-    margin: 0; /* 去掉图片间距 */
+    margin: 0; /* 去掉图片之间的空隙 */
     border: none; /* 移除边框 */
 }
 
@@ -101,6 +102,6 @@ body {
     }
 
     .videos video {
-        height: 70vh; /* 小屏幕下调整视频高度 */
+        width: 100%; /* 小屏幕下调整视频宽度 */
     }
-}
+} 
