@@ -55,8 +55,16 @@ body {
 }
 
 /* 视频 Section */
+.videos {
+    display: flex;
+    justify-content: center; /* 保证视频容器居中 */
+    align-items: center;
+    margin: 40px auto;
+    width: 100%;
+}
+
 .videos video {
-    width: 70%; /* 视频宽度调整为 70% */
+    width: 50%; /* 视频宽度缩小到 50% */
     height: auto; /* 保持高度按比例调整 */
     object-fit: contain; /* 确保视频按比例缩小 */
     border: none; /* 移除边框 */
@@ -79,7 +87,7 @@ body {
 .pdf-container img {
     max-width: 90%; /* 确保图片宽度适配容器 */
     height: auto; /* 保持图片比例 */
-    margin: 0; /* 去掉图片之间的空隙 */
+    margin: 0.5mm 0; /* 上下间距为 0.5mm */
     border: none; /* 移除边框 */
 }
 
@@ -102,6 +110,6 @@ body {
     }
 
     .videos video {
-        width: 100%; /* 小屏幕下调整视频宽度 */
+        width: 80%; /* 小屏幕下调整视频宽度 */
     }
-} 
+}
