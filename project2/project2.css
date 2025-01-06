@@ -52,7 +52,17 @@ body {
     font-size: 18px;
 }
 
-/* PDF Container Styling */
+/* 视频容器 Section */
+.videos video {
+    width: 80%; /* 视频宽度调整为 80% */
+    height: auto; /* 保持高度按比例调整 */
+    object-fit: cover; /* 确保视频按比例裁剪 */
+    border: none; /* 移除边框 */
+    margin: 0 auto; /* 居中对齐 */
+    border-radius: 0; /* 移除圆角 */
+}
+
+/* PDF 容器 */
 .pdf-container {
     display: flex;
     flex-direction: column;
@@ -66,9 +76,31 @@ body {
 }
 
 .pdf-container img {
-    max-width: 90%;
-    height: auto;
-    margin: 20px 0;
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 90%; /* 确保图片宽度适配容器 */
+    height: auto; /* 保持图片比例 */
+    margin: 0; /* 去掉图片间距 */
+    border: none; /* 移除边框 */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 767px) {
+    .description h1 {
+        font-size: 24px;
+    }
+
+    .description p {
+        font-size: 16px;
+    }
+
+    .pdf-container {
+        padding: 10px 0;
+    }
+
+    .pdf-container img {
+        max-width: 100%; /* 小屏幕下图片宽度为 100% */
+    }
+
+    .videos video {
+        height: 70vh; /* 小屏幕下调整视频高度 */
+    }
 }
