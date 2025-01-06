@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="project2.css" as="style">
     <link rel="stylesheet" href="project2.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Avenir+Next:wght@300&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Halcom&display=swap">
-    
+
     <title>Project 2</title>
 </head>
 <body>
-    <!-- Back to Home Button -->
     <a href="../index.html" class="back-button">Back to Home</a>
 
-    <!-- Main Content Container -->
     <div class="content">
-        <!-- Title and Description Section -->
         <div class="description">
             <h1>Press-Cook-Enjoy, Perfect Flavour Everytime!</h1>
             <p>SpiceStream - A kitchen tool that automatically provides basic seasonings based on the dish you intend to make.</p>
@@ -23,14 +21,13 @@
         </div>
 
         <div class="videos">
-            <video autoplay loop muted>
+            <video autoplay loop muted loading="lazy">
                 <source src="demo.mp4" type="video/mp4">
             </video>
         </div>
 
-        <!-- PDF Embed Section -->
         <div class="pdf-container">
-            <embed src="SpiceStream.pdf" type="application/pdf">
+            <iframe src="SpiceStream.pdf" loading="lazy" width="100%" height="600px"></iframe>
         </div>
     </div>
 </body>
