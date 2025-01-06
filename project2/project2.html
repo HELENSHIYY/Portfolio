@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project 2</title>
-    <link rel="stylesheet" href="project2.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Avenir+Next:wght@300&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Halcom&display=swap">
+    <link rel="stylesheet" href="project2.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 </head>
 <body>
@@ -29,31 +29,30 @@
             </video>
         </div>
 
-        <!-- PDF Section (Replaced with Image Rendering) -->
+        <!-- PDF Section -->
         <div id="pdf-container" class="pdf-container">
             <p class="loading">Loading PDF...</p>
         </div>
-
     </div>
 
     <script>
-        // PDF.js dynamic rendering logic
-        const pdfUrl = 'SpiceStream.pdf'; // Replace with your PDF file path
+        const pdfUrl = 'SpiceStream.pdf'; // 替换为您的 PDF 文件路径
         const container = document.getElementById('pdf-container');
         const loadingText = document.querySelector('.loading');
 
-        // Load and render the PDF
+        // 加载 PDF 文件
         pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
             loadingText.textContent = `Rendering ${pdf.numPages} pages...`;
 
             for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
                 pdf.getPage(pageNum).then(function (page) {
-                    const viewport = page.getViewport({ scale: 2 });
+                    const viewport = page.getViewport({ scale: 1.5 }); // 调整缩放比例
                     const canvas = document.createElement('canvas');
                     const context = canvas.getContext('2d');
                     canvas.width = viewport.width;
                     canvas.height = viewport.height;
 
+                    // 渲染 PDF 页面到 canvas
                     const renderContext = {
                         canvasContext: context,
                         viewport: viewport,
@@ -61,12 +60,10 @@
 
                     page.render(renderContext).promise.then(function () {
                         const img = document.createElement('img');
-                        img.src = canvas.toDataURL(); // Convert canvas to Base64 image
-                        img.style.display = 'block';
-                        img.style.margin = '10px auto';
+                        img.src = canvas.toDataURL('image/png'); // 确保图片格式正确
                         container.appendChild(img);
 
-                        // Hide loading text after the last page
+                        // 移除加载文本
                         if (pageNum === pdf.numPages) {
                             loadingText.style.display = 'none';
                         }
