@@ -61,15 +61,22 @@ body {
 
 /* PDF Container Styling */
 .pdf-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 水平居中 */
+    justify-content: center; /* 垂直居中 */
     width: 100%;
-    height: 90vh; /* 让 PDF 几乎占满视口高度 */
-    margin: 0 auto;
+    padding: 20px 0; /* 增加上下间距 */
+    box-sizing: border-box;
+    overflow: hidden; /* 确保内容不溢出 */
 }
 
-.pdf-container iframe {
-    width: 100%;
-    height: 100%;
+.pdf-container img {
+    max-width: 90%; /* 限制图片最大宽度 */
+    height: auto; /* 保持图片比例 */
+    margin: 20px 0; /* 增加图片间距 */
     border: none; /* 移除边框 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
 }
 
 /* Photos and Videos Section */
@@ -105,7 +112,11 @@ body {
     }
 
     .pdf-container {
-        height: 70vh; /* 调整小屏幕 PDF 高度 */
+        padding: 10px 0; /* 减少间距 */
+    }
+
+    .pdf-container img {
+        max-width: 100%; /* 小屏幕下图片宽度为 100% */
     }
 
     .videos video {
