@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project 2</title>
     <link rel="stylesheet" href="project2.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 </head>
 <body>
     <!-- Back to Home Button -->
@@ -31,33 +32,46 @@
             <p class="loading">Loading PDF...</p>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <script>
-        const pdfUrl = 'SpiceStream.pdf'; // PDF 文件路径
+        const pdfUrl = 'SpiceStream.pdf'; // 替换为您的 PDF 文件路径
         const container = document.getElementById('pdf-container');
         const loadingText = document.querySelector('.loading');
 
+        // 加载 PDF 文件
         pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
             loadingText.textContent = `Rendering ${pdf.numPages} pages...`;
 
-            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+            // 按顺序加载 PDF 页面的函数
+            const renderPage = (pageNum) => {
                 pdf.getPage(pageNum).then(function (page) {
-                    const viewport = page.getViewport({ scale: 1.5 });
+                    const viewport = page.getViewport({ scale: 1.5 }); // 调整缩放比例
                     const canvas = document.createElement('canvas');
                     const context = canvas.getContext('2d');
                     canvas.width = viewport.width;
                     canvas.height = viewport.height;
 
-                    page.render({ canvasContext: context, viewport: viewport }).promise.then(function () {
+                    // 渲染 PDF 页面到 canvas
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport,
+                    };
+
+                    page.render(renderContext).promise.then(function () {
                         const img = document.createElement('img');
-                        img.src = canvas.toDataURL('image/png');
+                        img.src = canvas.toDataURL('image/png'); // 转换为图片格式
                         container.appendChild(img);
 
+                        // 如果所有页面都渲染完毕，隐藏加载文字
                         if (pageNum === pdf.numPages) {
                             loadingText.style.display = 'none';
                         }
                     });
                 });
+            };
+
+            // 按顺序依次调用 renderPage
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                renderPage(pageNum);
             }
         }).catch(function (error) {
             console.error('Error loading PDF:', error);
