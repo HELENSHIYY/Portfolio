@@ -45,9 +45,9 @@ body {
 }
 
 .description h1 {
-    font-size: 64px; /* 调整字体大小到非常醒目 */
-    margin-bottom: 20px; /* 增加标题和其他内容的间距 */
-    font-weight: 700; /* 加粗字体 */
+    font-size: 100px; /* 调整字体大小到非常醒目 */
+    margin-bottom: 15px; /* 增加标题和其他内容的间距 */
+    font-weight: 400; /* 加粗字体 */
     text-align: center; /* 居中对齐 */
     color: #ff007b; /* 让标题颜色更突出，可根据需要修改 */
 }
