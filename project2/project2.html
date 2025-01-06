@@ -41,10 +41,12 @@
         pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
             loadingText.textContent = `Rendering ${pdf.numPages} pages...`;
 
-            // 按顺序加载 PDF 页面的函数
+            let currentPage = 1;
+
+            // 按顺序渲染页面的函数
             const renderPage = (pageNum) => {
                 pdf.getPage(pageNum).then(function (page) {
-                    const viewport = page.getViewport({ scale: 1.5 }); // 调整缩放比例
+                    const viewport = page.getViewport({ scale: 1.5 });
                     const canvas = document.createElement('canvas');
                     const context = canvas.getContext('2d');
                     canvas.width = viewport.width;
@@ -58,21 +60,21 @@
 
                     page.render(renderContext).promise.then(function () {
                         const img = document.createElement('img');
-                        img.src = canvas.toDataURL('image/png'); // 转换为图片格式
+                        img.src = canvas.toDataURL('image/png'); // 将 canvas 转为图片
                         container.appendChild(img);
 
-                        // 如果所有页面都渲染完毕，隐藏加载文字
-                        if (pageNum === pdf.numPages) {
-                            loadingText.style.display = 'none';
+                        // 渲染下一页
+                        if (pageNum < pdf.numPages) {
+                            renderPage(pageNum + 1);
+                        } else {
+                            loadingText.style.display = 'none'; // 所有页面加载完成后隐藏加载文字
                         }
                     });
                 });
             };
 
-            // 按顺序依次调用 renderPage
-            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                renderPage(pageNum);
-            }
+            // 从第一页开始渲染
+            renderPage(currentPage);
         }).catch(function (error) {
             console.error('Error loading PDF:', error);
             loadingText.textContent = 'Failed to load PDF.';
