@@ -3,79 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF to Images</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: rgb(55, 56, 54);
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-
-        #pdf-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-
-        #pdf-container img {
-            width: 100%;
-            max-width: 800px;
-            margin-bottom: 20px;
-        }
-
-        .loading {
-            font-size: 18px;
-            margin-top: 20px;
-        }
-    </style>
+    <title>Project 2</title>
+    <link rel="stylesheet" href="project2.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Avenir+Next:wght@300&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Halcom&display=swap">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 </head>
 <body>
-    <div id="pdf-container">
-        <p class="loading">Loading PDF...</p>
+    <!-- Back to Home Button -->
+    <a href="../index.html" class="back-button">Back to Home</a>
+
+    <!-- Main Content Container -->
+    <div class="content">
+        <!-- Title and Description Section -->
+        <div class="description">
+            <h1>Press-Cook-Enjoy, Perfect Flavour Everytime!</h1>
+            <p>SpiceStream - A kitchen tool that automatically provides basic seasonings based on the dish you intend to make.</p>
+            <p>The video demonstrates how the machine provides users with precise amounts of spices according to the recipe.</p>
+        </div>
+
+        <!-- Video Section -->
+        <div class="videos">
+            <video autoplay loop muted>
+                <source src="demo.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- PDF Section (Replaced with Image Rendering) -->
+        <div id="pdf-container" class="pdf-container">
+            <p class="loading">Loading PDF...</p>
+        </div>
     </div>
 
     <script>
-        const pdfUrl = 'SpiceStream.pdf'; // 替换为您的 PDF 文件路径
+        // PDF.js dynamic rendering logic
+        const pdfUrl = 'SpiceStream.pdf'; // Replace with your PDF file path
         const container = document.getElementById('pdf-container');
         const loadingText = document.querySelector('.loading');
 
-        // 加载 PDF 文件
-        pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
+        // Load and render the PDF
+        pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
             loadingText.textContent = `Rendering ${pdf.numPages} pages...`;
 
-            // 遍历每一页，将其渲染为图片
             for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                pdf.getPage(pageNum).then(function(page) {
-                    const viewport = page.getViewport({ scale: 2 }); // 调整 scale 以控制图片清晰度
+                pdf.getPage(pageNum).then(function (page) {
+                    const viewport = page.getViewport({ scale: 2 });
                     const canvas = document.createElement('canvas');
                     const context = canvas.getContext('2d');
                     canvas.width = viewport.width;
                     canvas.height = viewport.height;
 
-                    // 渲染 PDF 页面到 canvas
                     const renderContext = {
                         canvasContext: context,
                         viewport: viewport,
                     };
 
-                    page.render(renderContext).promise.then(function() {
-                        // 将 canvas 转换为图片并添加到页面
+                    page.render(renderContext).promise.then(function () {
                         const img = document.createElement('img');
-                        img.src = canvas.toDataURL(); // 将 canvas 转换为 Base64 图片
+                        img.src = canvas.toDataURL(); // Convert canvas to Base64 image
+                        img.style.display = 'block';
+                        img.style.margin = '10px auto';
                         container.appendChild(img);
 
-                        // 移除加载文本
+                        // Hide loading text after the last page
                         if (pageNum === pdf.numPages) {
                             loadingText.style.display = 'none';
                         }
                     });
                 });
             }
-        }).catch(function(error) {
+        }).catch(function (error) {
             console.error('Error loading PDF:', error);
             loadingText.textContent = 'Failed to load PDF.';
         });
