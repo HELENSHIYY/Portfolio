@@ -26,6 +26,14 @@
             <img src="project5pic.png" alt="Project 5 Product Photo">
         </div>
 
+        <!-- Video Section -->
+        <div class="video-container">
+            <video controls>
+                <source src="Gizmo2024.mov" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
         <!-- PDF Section -->
         <div id="pdf-container" class="pdf-container">
             <p class="loading">Loading PDF...</p>
@@ -33,11 +41,11 @@
     </div>
 
     <script>
-        const pdfUrl = 'Interactive boardgame design with.pdf'; // Ensure this file path is correct
+        const pdfUrl = 'InteractiveBoardgameDesign.pdf'; // 修改后的 PDF 文件名
         const container = document.getElementById('pdf-container');
         const loadingText = document.querySelector('.loading');
 
-        // Load PDF using PDF.js
+        // 加载 PDF 文件
         pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
             loadingText.textContent = `Rendering page 1 of ${pdf.numPages}...`;
 
@@ -58,21 +66,21 @@
 
                     page.render(renderContext).promise.then(function () {
                         const img = document.createElement('img');
-                        img.src = canvas.toDataURL('image/png'); // Convert to image
-                        img.style.margin = "0.5mm 0"; // Add spacing between pages
+                        img.src = canvas.toDataURL('image/png'); // 转换为图片格式
+                        img.style.margin = "0.5mm 0"; // 设置图片上下间隔
                         container.appendChild(img);
 
                         if (pageNum < pdf.numPages) {
                             loadingText.textContent = `Rendering page ${pageNum + 1} of ${pdf.numPages}...`;
                             renderPage(pageNum + 1);
                         } else {
-                            loadingText.style.display = 'none'; // Hide loading text when done
+                            loadingText.style.display = 'none'; // 所有页面加载完成后隐藏加载文字
                         }
                     });
                 });
             };
 
-            renderPage(1); // Start rendering from page 1
+            renderPage(1); // 从第一页开始渲染
         }).catch(function (error) {
             console.error('Error loading PDF:', error);
             loadingText.textContent = 'Failed to load PDF.';
