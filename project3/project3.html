@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 3</title>
     <link rel="stylesheet" href="project3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Avenir+Next:wght@300&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Halcom&display=swap">
-    
-    <title>Project 3</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 </head>
 <body>
     <!-- Back to Home Button -->
@@ -21,10 +21,60 @@
             <p>A pair of glasses, a lunchbox, and an app were developed step-by-step following a human-centered design process.</p>
         </div>
 
-        <!-- PDF Embed Section -->
-        <div class="pdf-container">
-            <embed src="SHI_helen_副本.pdf" type="application/pdf">
+        <!-- PDF Section -->
+        <div id="pdf-container" class="pdf-container">
+            <p class="loading">Loading PDF...</p>
         </div>
     </div>
+
+    <script>
+        const pdfUrl = 'SHI_helen_副本.pdf'; // 替换为您的 PDF 文件路径
+        const container = document.getElementById('pdf-container');
+        const loadingText = document.querySelector('.loading');
+
+        // 加载 PDF 文件
+        pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
+            loadingText.textContent = `Rendering page 1 of ${pdf.numPages}...`;
+
+            let currentPage = 1;
+
+            // 按顺序渲染页面的函数
+            const renderPage = (pageNum) => {
+                pdf.getPage(pageNum).then(function (page) {
+                    const viewport = page.getViewport({ scale: 1.0 });
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport,
+                    };
+
+                    page.render(renderContext).promise.then(function () {
+                        const img = document.createElement('img');
+                        img.src = canvas.toDataURL('image/png'); // 将 canvas 转为图片
+                        img.style.margin = "0.5mm 0"; // 设置图片上下间隔
+                        container.appendChild(img);
+
+                        // 加载下一页
+                        if (pageNum < pdf.numPages) {
+                            loadingText.textContent = `Rendering page ${pageNum + 1} of ${pdf.numPages}...`;
+                            renderPage(pageNum + 1);
+                        } else {
+                            loadingText.style.display = 'none'; // 所有页面加载完成后隐藏加载文字
+                        }
+                    });
+                });
+            };
+
+            // 从第一页开始渲染
+            renderPage(1);
+        }).catch(function (error) {
+            console.error('Error loading PDF:', error);
+            loadingText.textContent = 'Failed to load PDF.';
+        });
+    </script>
 </body>
 </html>
