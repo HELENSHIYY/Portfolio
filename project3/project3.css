@@ -6,14 +6,16 @@ body {
     color: #ffffff;
     display: flex;
     justify-content: center;
+    overflow-x: hidden; /* 禁止水平滚动条 */
 }
 
 /* Centered Content Wrapper */
 .content {
-    max-width: 1200px; /* 扩大最大宽度 */
+    max-width: 1200px;
     width: 100%;
-    padding: 40px 20px;
+    padding: 40px 20px; /* 增加额外内边距 */
     box-sizing: border-box;
+    overflow-x: hidden; /* 禁止水平滚动条 */
 }
 
 /* Back to Home Button Styling */
@@ -43,72 +45,51 @@ body {
 }
 
 .description h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-    font-weight: 300;
+    font-size: 64px; /* 醒目标题字体 */
+    font-weight: 700; /* 加粗字体 */
+    color: #ff007b; /* 亮眼颜色 */
 }
 
 .description p {
     font-size: 18px;
+    line-height: 1.5; /* 更好的阅读体验 */
 }
 
-/* Additional Description Styling */
-.description2 {
-    text-align: center;
-    margin-bottom: 60px;
-    font-size: 14px;
-}
-
-/* PDF Container Styling */
+/* PDF Section */
 .pdf-container {
-    width: 100%;
-    height: 90vh; /* 让 PDF 几乎占满视口高度 */
-    margin: 0 auto;
-}
-
-.pdf-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none; /* 移除边框 */
-}
-
-/* Photos and Videos Section */
-.photos, .videos {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    margin: 40px auto;
     width: 100%;
-    height: 90vh; /* 让视频占满视口高度 */
+    padding: 20px 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* 禁止水平滚动条 */
 }
 
-.videos video {
-    width: 100%; /* 占满宽度 */
-    height: 100%; /* 占满高度 */
-    object-fit: cover; /* 确保视频按比例裁剪 */
-    border: none; /* 移除边框 */
-    margin: 0; /* 移除间距 */
-    border-radius: 0; /* 移除圆角 */
+.pdf-container img {
+    max-width: 90%; /* 限制图片最大宽度 */
+    height: auto; /* 保持图片比例 */
+    margin: 0.5mm 0; /* 每张图片之间的间隔 */
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 阴影效果 */
 }
 
 /* Responsive Design */
 @media screen and (max-width: 767px) {
     .description h1 {
-        font-size: 24px;
+        font-size: 32px;
     }
 
     .description p {
         font-size: 16px;
     }
 
-    .description2 {
-        font-size: 12px;
-    }
-
     .pdf-container {
-        height: 70vh; /* 调整小屏幕 PDF 高度 */
+        padding: 10px 0;
     }
 
-    .videos video {
-        height: 70vh; /* 小屏幕下调整视频高度 */
+    .pdf-container img {
+        max-width: 100%; /* 小屏幕下图片宽度为 100% */
     }
 }
