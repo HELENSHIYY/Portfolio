@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1</title>
     <link rel="stylesheet" href="project1.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Avenir+Next:wght@300&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Halcom&display=swap">
-    
-    <title>Project 1</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 </head>
 <body>
     <!-- Back to Home Button -->
@@ -18,13 +18,63 @@
         <!-- Title and Description Section -->
         <div class="description">
             <h1>Eco-Shower, No Cold Water Delays</h1>
-            <p>The SmartSave Shower minimizes water wastage by recycling unused cold and partially heated water, filtering it for reuse. It features a temperature-controlled diverter valve, real-time usage tracking, and a multi-stage filtration system that purifies greywater to meet hygiene standards, enhancing both water and energy efficiency​</p>
+            <p>The SmartSave Shower minimizes water wastage by recycling unused cold and partially heated water, filtering it for reuse. It features a temperature-controlled diverter valve, real-time usage tracking, and a multi-stage filtration system that purifies greywater to meet hygiene standards, enhancing both water and energy efficiency.</p>
         </div>
 
-        <!-- PDF Embed Section -->
-        <div class="pdf-container">
-            <embed src="watertight.pdf" type="application/pdf">
+        <!-- PDF Section -->
+        <div id="pdf-container" class="pdf-container">
+            <p class="loading">Loading PDF...</p>
         </div>
     </div>
+
+    <script>
+        const pdfUrl = 'watertight.pdf'; // 替换为您的 PDF 文件路径
+        const container = document.getElementById('pdf-container');
+        const loadingText = document.querySelector('.loading');
+
+        // 加载 PDF 文件
+        pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
+            loadingText.textContent = `Rendering ${pdf.numPages} pages...`;
+
+            let currentPage = 1;
+
+            // 按顺序渲染页面的函数
+            const renderPage = (pageNum) => {
+                pdf.getPage(pageNum).then(function (page) {
+                    const viewport = page.getViewport({ scale: 1.5 });
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+
+                    // 渲染 PDF 页面到 canvas
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport,
+                    };
+
+                    page.render(renderContext).promise.then(function () {
+                        const img = document.createElement('img');
+                        img.src = canvas.toDataURL('image/png'); // 将 canvas 转为图片
+                        img.style.margin = "0.5mm 0"; // 图片间隔
+                        container.appendChild(img);
+
+                        // 渲染下一页
+                        if (pageNum < pdf.numPages) {
+                            renderPage(pageNum + 1);
+                        } else {
+                            loadingText.style.display = 'none'; // 所有页面加载完成后隐藏加载文字
+                        }
+                    });
+                });
+            };
+
+            // 从第一页开始渲染
+            renderPage(currentPage);
+        }).catch(function (error) {
+            console.error('Error loading PDF:', error);
+            loadingText.textContent = 'Failed to load PDF.';
+        });
+    </script>
 </body>
 </html>
