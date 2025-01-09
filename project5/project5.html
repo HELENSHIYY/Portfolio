@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project 5</title>
     <link rel="stylesheet" href="project5.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Avenir+Next:wght@300&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Halcom&display=swap">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 </head>
 <body>
@@ -17,20 +15,19 @@
     <div class="content">
         <!-- Title and Description Section -->
         <div class="description">
-            <h1>Project 5 Title</h1>
-            <p>Project 5 description goes here. Add details about the project to give context and background information.</p>
+            <h1>Press-Cook-Enjoy, Perfect Flavour Everytime!</h1>
+            <p>Interactive Boardgame - A kitchen tool that automatically provides basic seasonings based on the dish you intend to make.</p>
+            <p>The video demonstrates how to play this boardgame.</p>
         </div>
 
-        <!-- Product Photo Section -->
-        <div class="product-photo">
-            <img src="project5pic.png" alt="Project 5 Product Photo">
+        <div class="photos">
+            <img src="project5pic.png" alt="Photo 1">
         </div>
 
         <!-- Video Section -->
-        <div class="video-container">
-            <video controls>
+        <div class="videos">
+            <video autoplay loop muted>
                 <source src="Gizmo2024.mp4" type="video/mp4">
-                Your browser does not support the video tag.
             </video>
         </div>
 
@@ -39,26 +36,27 @@
             <p class="loading">Loading PDF...</p>
         </div>
     </div>
-
     <script>
-        const pdfUrl = 'InteractiveBoardgameDesign.pdf'; // 确保路径和文件名正确
+        const pdfUrl = 'InteractiveBoardgameDesign.pdf'; // 替换为您的 PDF 文件路径
         const container = document.getElementById('pdf-container');
         const loadingText = document.querySelector('.loading');
 
         // 加载 PDF 文件
         pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
-            loadingText.textContent = `Rendering page 1 of ${pdf.numPages}...`;
+            loadingText.textContent = `Rendering ${pdf.numPages} pages...`;
 
             let currentPage = 1;
 
+            // 按顺序渲染页面的函数
             const renderPage = (pageNum) => {
                 pdf.getPage(pageNum).then(function (page) {
-                    const viewport = page.getViewport({ scale: 1.0 });
+                    const viewport = page.getViewport({ scale: 1.5 });
                     const canvas = document.createElement('canvas');
                     const context = canvas.getContext('2d');
                     canvas.width = viewport.width;
                     canvas.height = viewport.height;
 
+                    // 渲染 PDF 页面到 canvas
                     const renderContext = {
                         canvasContext: context,
                         viewport: viewport,
@@ -66,12 +64,11 @@
 
                     page.render(renderContext).promise.then(function () {
                         const img = document.createElement('img');
-                        img.src = canvas.toDataURL('image/png'); // 转换为图片格式
-                        img.style.margin = "0.5mm 0"; // 设置图片上下间隔
+                        img.src = canvas.toDataURL('image/png'); // 将 canvas 转为图片
                         container.appendChild(img);
 
+                        // 渲染下一页
                         if (pageNum < pdf.numPages) {
-                            loadingText.textContent = `Rendering page ${pageNum + 1} of ${pdf.numPages}...`;
                             renderPage(pageNum + 1);
                         } else {
                             loadingText.style.display = 'none'; // 所有页面加载完成后隐藏加载文字
@@ -80,7 +77,8 @@
                 });
             };
 
-            renderPage(1); // 从第一页开始渲染
+            // 从第一页开始渲染
+            renderPage(currentPage);
         }).catch(function (error) {
             console.error('Error loading PDF:', error);
             loadingText.textContent = 'Failed to load PDF.';
