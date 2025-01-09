@@ -8,7 +8,7 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden; /* 防止水平滚动 */
 }
 
 /* Centered Content Wrapper */
@@ -33,6 +33,7 @@ body {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    z-index: 100;
 }
 
 .back-button:hover {
@@ -56,38 +57,42 @@ body {
 
 /* Product Photo Styling */
 .photos img {
-    max-width: 40%; /* Adjust image size to fit into the viewport */
+    max-width: 80%; /* 限制图片宽度为容器的 80% */
     height: auto;
     border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 40px;
 }
 
 /* Video Section */
 .videos video {
-    width: 60%; /* Adjust video width */
+    width: 60%; /* 调整视频宽度 */
     height: auto;
     border-radius: 8px;
     margin-bottom: 40px;
-    display: block; /* Ensure video is centered */
+    display: block; /* 确保视频为块级元素 */
     margin: 0 auto;
 }
 
-/* PDF Container Styling */
+/* PDF Container Section */
 .pdf-container {
     display: flex;
-    flex-direction: column; /* 纵向排列 PDF 页面 */
+    flex-direction: column; /* 纵向排列 PDF 图片 */
     align-items: center; /* 居中对齐 */
     justify-content: center;
-    width: 100%;
+    width: 100%; /* 容器宽度 */
     padding: 20px 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* 防止水平滚动 */
 }
 
 .pdf-container img {
-    max-width: 80%; /* 图片最大宽度为容器的 80% */
+    max-width: 90%; /* 确保图片不会超出页面宽度 */
+    width: auto; /* 自适应宽度 */
     height: auto; /* 保持图片比例 */
-    margin: 10px auto; /* 设置上下和水平居中间距 */
-    display: block; /* 确保图片是块级元素 */
-    border: none; /* 移除边框 */
+    margin: 10px 0; /* 设置上下间距 */
+    border: none; /* 移除图片边框 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加轻微阴影 */
 }
 
 /* Loading Text Styling */
@@ -96,20 +101,6 @@ body {
     color: #ffffff;
     margin-bottom: 20px;
     text-align: center;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 767px) {
-    .pdf-container img {
-        max-width: 95%; /* 在小屏幕设备上确保图片最大宽度为 95% */
-    }
-}
-
-/* Loading Text */
-.loading {
-    font-size: 16px;
-    color: #ffffff;
-    margin-bottom: 20px;
 }
 
 /* Responsive Design */
@@ -123,14 +114,14 @@ body {
     }
 
     .photos img {
-        max-width: 100%; /* Make image fill smaller screens */
+        max-width: 95%; /* 小屏幕图片最大宽度 95% */
     }
 
     .videos video {
-        width: 100%; /* Video occupies full width on smaller screens */
+        width: 90%; /* 小屏幕视频宽度调整为 90% */
     }
 
     .pdf-container img {
-        max-width: 100%;
+        max-width: 95%; /* 小屏幕 PDF 图片最大宽度 95% */
     }
 }
