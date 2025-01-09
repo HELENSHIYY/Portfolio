@@ -8,16 +8,7 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-
-/* Content Wrapper */
-.content {
-    max-width: 1200px;
-    width: 100%;
-    padding: 40px 20px;
-    box-sizing: border-box;
-    text-align: center;
+    overflow-x: hidden; /* 防止水平滚动条 */
 }
 
 /* Back to Home Button */
@@ -33,13 +24,21 @@ body {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    z-index: 100;
 }
 
 .back-button:hover {
     background-color: #ff007b;
     color: #ffffff;
     border-color: #ff007b;
+}
+
+/* Content Wrapper */
+.content {
+    max-width: 1200px;
+    width: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 /* Title and Description Styling */
@@ -52,12 +51,11 @@ body {
 
 .description p {
     font-size: 18px;
-    color: #ffffff;
     margin-bottom: 40px;
     line-height: 1.5;
 }
 
-/* Product Photo Section */
+/* Product Photo Styling */
 .product-photo img {
     max-width: 100%;
     height: auto;
@@ -66,22 +64,31 @@ body {
     margin-bottom: 40px;
 }
 
-/* PDF Container */
+/* Video Section */
+.video-container video {
+    width: 80%; /* 视频宽度适配 */
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+}
+
+/* PDF Section */
 .pdf-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-top: 20px;
     padding: 20px 0;
+    box-sizing: border-box;
 }
 
 .pdf-container img {
     max-width: 90%;
     height: auto;
-    margin: 0.5mm 0;
-    border: none;
+    margin: 0.5mm 0; /* PDF 图片间隔 */
 }
 
 /* Loading Text */
@@ -89,23 +96,4 @@ body {
     font-size: 16px;
     color: #ffffff;
     margin-bottom: 20px;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 767px) {
-    .description h1 {
-        font-size: 32px;
-    }
-
-    .description p {
-        font-size: 16px;
-    }
-
-    .product-photo img {
-        max-width: 100%;
-    }
-
-    .pdf-container img {
-        max-width: 100%;
-    }
 }
