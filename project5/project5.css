@@ -8,10 +8,10 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden; /* 防止水平滚动 */
 }
 
-/* Centered Content Wrapper */
+/* Content Wrapper */
 .content {
     max-width: 1200px;
     width: 100%;
@@ -20,102 +20,35 @@ body {
     text-align: center;
 }
 
-/* Back to Home Button Styling */
-.back-button {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    padding: 10px 20px;
-    color: #ffffff;
-    text-decoration: none;
-    background-color: transparent;
-    border: 2px solid #ffffff;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.back-button:hover {
-    background-color: #ff007b;
-    color: #ffffff;
-    border-color: #ff007b;
-}
-
-/* Title and Description Styling */
-.description h1 {
-    font-size: 48px;
-    font-weight: bold;
-    color: #ff007b;
-    margin-bottom: 20px;
-}
-
-.description p {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-/* Product Photo Styling */
-.photos img {
-    max-width: 80%; /* Adjust image size to fit into the viewport */
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-bottom: 40px;
-}
-
-/* Video Section */
-.videos video {
-    width: 60%; /* Adjust video width */
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 40px;
-    display: block; /* Ensure video is centered */
-    margin: 0 auto;
-}
-
-/* PDF Section */
+/* PDF Container Styling */
 .pdf-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* 纵向排列 PDF 页面 */
+    align-items: center; /* 居中对齐 */
     justify-content: center;
     width: 100%;
-    max-width: 90%;
     padding: 20px 0;
 }
 
 .pdf-container img {
-    max-width: 90%; /* Ensure PDF images fit within container */
-    height: auto;
-    margin: 10px 0; /* Add spacing between PDF pages */
+    max-width: 80%; /* 图片最大宽度为容器的 80% */
+    height: auto; /* 保持图片比例 */
+    margin: 10px auto; /* 设置上下和水平居中间距 */
+    display: block; /* 确保图片是块级元素 */
+    border: none; /* 移除边框 */
 }
 
-/* Loading Text */
+/* Loading Text Styling */
 .loading {
     font-size: 16px;
     color: #ffffff;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 /* Responsive Design */
 @media screen and (max-width: 767px) {
-    .description h1 {
-        font-size: 24px;
-    }
-
-    .description p {
-        font-size: 16px;
-    }
-
-    .photos img {
-        max-width: 100%; /* Make image fill smaller screens */
-    }
-
-    .videos video {
-        width: 100%; /* Video occupies full width on smaller screens */
-    }
-
     .pdf-container img {
-        max-width: 100%;
+        max-width: 95%; /* 在小屏幕设备上确保图片最大宽度为 95% */
     }
 }
