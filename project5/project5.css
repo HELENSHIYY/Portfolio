@@ -57,10 +57,9 @@ body {
 
 /* Product Photo Styling */
 .product-photo img {
-    max-width: 70%;
+    max-width: 30%;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
     margin-bottom: 40px;
 }
 
