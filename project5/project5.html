@@ -20,14 +20,16 @@
             <p>The video demonstrates how to play this boardgame.</p>
         </div>
 
+        <!-- Product Photo Section -->
         <div class="photos">
-            <img src="project5pic.png" alt="Photo 1">
+            <img src="project5pic.png" alt="Photo of the boardgame">
         </div>
 
         <!-- Video Section -->
         <div class="videos">
-            <video autoplay loop muted>
+            <video autoplay loop muted playsinline>
                 <source src="Gizmo2024.mp4" type="video/mp4">
+                Your browser does not support the video tag.
             </video>
         </div>
 
@@ -36,18 +38,16 @@
             <p class="loading">Loading PDF...</p>
         </div>
     </div>
+
     <script>
-        const pdfUrl = 'InteractiveBoardgameDesign.pdf'; // 替换为您的 PDF 文件路径
+        const pdfUrl = 'InteractiveBoardgameDesign.pdf'; // Ensure the PDF file path is correct
         const container = document.getElementById('pdf-container');
         const loadingText = document.querySelector('.loading');
 
-        // 加载 PDF 文件
+        // Load the PDF
         pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
             loadingText.textContent = `Rendering ${pdf.numPages} pages...`;
 
-            let currentPage = 1;
-
-            // 按顺序渲染页面的函数
             const renderPage = (pageNum) => {
                 pdf.getPage(pageNum).then(function (page) {
                     const viewport = page.getViewport({ scale: 1.5 });
@@ -56,7 +56,7 @@
                     canvas.width = viewport.width;
                     canvas.height = viewport.height;
 
-                    // 渲染 PDF 页面到 canvas
+                    // Render PDF page onto canvas
                     const renderContext = {
                         canvasContext: context,
                         viewport: viewport,
@@ -64,21 +64,19 @@
 
                     page.render(renderContext).promise.then(function () {
                         const img = document.createElement('img');
-                        img.src = canvas.toDataURL('image/png'); // 将 canvas 转为图片
+                        img.src = canvas.toDataURL('image/png'); // Convert canvas to image
                         container.appendChild(img);
 
-                        // 渲染下一页
                         if (pageNum < pdf.numPages) {
                             renderPage(pageNum + 1);
                         } else {
-                            loadingText.style.display = 'none'; // 所有页面加载完成后隐藏加载文字
+                            loadingText.style.display = 'none'; // Hide loading text when done
                         }
                     });
                 });
             };
 
-            // 从第一页开始渲染
-            renderPage(currentPage);
+            renderPage(1); // Start rendering from page 1
         }).catch(function (error) {
             console.error('Error loading PDF:', error);
             loadingText.textContent = 'Failed to load PDF.';
