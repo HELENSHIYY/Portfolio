@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="project5.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Avenir+Next:wght@300&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Halcom&display=swap">
-    <!-- PDF.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 </head>
 <body>
@@ -42,12 +41,9 @@
     </div>
 
     <script>
-        const pdfUrl = './InteractiveBoardgameDesign.pdf'; // 确保文件路径正确
+        const pdfUrl = 'InteractiveBoardgameDesign.pdf'; // 确保路径和文件名正确
         const container = document.getElementById('pdf-container');
         const loadingText = document.querySelector('.loading');
-
-        // 初始化 PDF.js Worker
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
         // 加载 PDF 文件
         pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
@@ -69,7 +65,10 @@
                     };
 
                     page.render(renderContext).promise.then(function () {
-                        container.appendChild(canvas);
+                        const img = document.createElement('img');
+                        img.src = canvas.toDataURL('image/png'); // 转换为图片格式
+                        img.style.margin = "0.5mm 0"; // 设置图片上下间隔
+                        container.appendChild(img);
 
                         if (pageNum < pdf.numPages) {
                             loadingText.textContent = `Rendering page ${pageNum + 1} of ${pdf.numPages}...`;
@@ -84,7 +83,7 @@
             renderPage(1); // 从第一页开始渲染
         }).catch(function (error) {
             console.error('Error loading PDF:', error);
-            loadingText.textContent = 'Failed to load PDF. Please check the file path or try again.';
+            loadingText.textContent = 'Failed to load PDF.';
         });
     </script>
 </body>
