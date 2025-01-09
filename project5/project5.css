@@ -56,10 +56,9 @@ body {
 
 /* Product Photo Styling */
 .photos img {
-    max-width: 80%; /* Adjust image size to fit into the viewport */
+    max-width: 40%; /* Adjust image size to fit into the viewport */
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 40px;
 }
 
