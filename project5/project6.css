@@ -1,0 +1,127 @@
+/* General Body Styling */
+body {
+    background-color: rgb(55, 56, 54);
+    margin: 0;
+    font-family: 'Avenir Next', sans-serif;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden; /* 防止水平滚动 */
+}
+
+/* Centered Content Wrapper */
+.content {
+    max-width: 1200px;
+    width: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Back to Home Button Styling */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.back-button:hover {
+    background-color: #ff007b;
+    color: #ffffff;
+    border-color: #ff007b;
+}
+
+/* Title and Description Styling */
+.description h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #ff007b;
+    margin-bottom: 20px;
+}
+
+.description p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Product Photo Styling */
+.photos img {
+    max-width: 80%; /* 限制图片宽度为容器的 80% */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+}
+
+/* Video Section */
+.videos video {
+    width: 60%; /* 调整视频宽度 */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    display: block; /* 确保视频为块级元素 */
+    margin: 0 auto;
+}
+
+/* PDF Container Section */
+.pdf-container {
+    display: flex;
+    flex-direction: column; /* 纵向排列 PDF 图片 */
+    align-items: center; /* 居中对齐 */
+    justify-content: center;
+    width: 100%; /* 容器宽度 */
+    padding: 20px 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* 防止水平滚动 */
+}
+
+.pdf-container img {
+    max-width: 90%; /* 确保图片不会超出页面宽度 */
+    width: auto; /* 自适应宽度 */
+    height: auto; /* 保持图片比例 */
+    margin: 10px 0; /* 设置上下间距 */
+    border: none; /* 移除图片边框 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加轻微阴影 */
+}
+
+/* Loading Text Styling */
+.loading {
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 767px) {
+    .description h1 {
+        font-size: 24px;
+    }
+
+    .description p {
+        font-size: 16px;
+    }
+
+    .photos img {
+        max-width: 95%; /* 小屏幕图片最大宽度 95% */
+    }
+
+    .videos video {
+        width: 90%; /* 小屏幕视频宽度调整为 90% */
+    }
+
+    .pdf-container img {
+        max-width: 95%; /* 小屏幕 PDF 图片最大宽度 95% */
+    }
+}

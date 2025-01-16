@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 5</title>
+    <link rel="stylesheet" href="project5.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+</head>
+<body>
+    <!-- Back to Home Button -->
+    <a href="../index.html" class="back-button">Back to Home</a>
+
+    <!-- Main Content Container -->
+    <div class="content">
+        <!-- Title and Description Section -->
+        <div class="description">
+            <h1>Interactive Themed Board Game</h1>
+            <p>Designed and built an interactive board game inspired by Stranger Things, blending engineering, electronics, and design. This project recreates a pivotal scene from the series using custom circuitry, 3D-printed mechanisms, and immersive audiovisual effects. The game features multiple levels triggered by player actions, integrating magnetic sensors, programmable LEDs, digital dice, and motion-driven props to create an engaging user experience.</p>
+        </div>
+
+        <!-- Product Photo Section -->
+        <div class="photos">
+            <img src="project5pic.png" alt="Photo of the boardgame">
+        </div>
+
+        <div class="description">
+            <p>The video demonstrates how to play this boardgame.</p>
+        </div>
+        
+        <!-- Video Section -->
+        <div class="videos">
+            <video autoplay loop muted playsinline>
+                <source src="Gizmo2024.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="description">
+            <p>Production Process.</p>
+        </div>
+
+        <!-- PDF Section -->
+        <div id="pdf-container" class="pdf-container">
+            <p class="loading">Loading PDF...</p>
+        </div>
+    </div>
+
+    <script>
+        const pdfUrl = 'InteractiveBoardgameDesign.pdf'; // Ensure the PDF file path is correct
+        const container = document.getElementById('pdf-container');
+        const loadingText = document.querySelector('.loading');
+
+        // Load the PDF
+        pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
+            loadingText.textContent = `Rendering ${pdf.numPages} pages...`;
+
+            const renderPage = (pageNum) => {
+                pdf.getPage(pageNum).then(function (page) {
+                    const viewport = page.getViewport({ scale: 1.5 });
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+
+                    // Render PDF page onto canvas
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport,
+                    };
+
+                    page.render(renderContext).promise.then(function () {
+                        const img = document.createElement('img');
+                        img.src = canvas.toDataURL('image/png'); // Convert canvas to image
+                        container.appendChild(img);
+
+                        if (pageNum < pdf.numPages) {
+                            renderPage(pageNum + 1);
+                        } else {
+                            loadingText.style.display = 'none'; // Hide loading text when done
+                        }
+                    });
+                });
+            };
+
+            renderPage(1); // Start rendering from page 1
+        }).catch(function (error) {
+            console.error('Error loading PDF:', error);
+            loadingText.textContent = 'Failed to load PDF.';
+        });
+    </script>
+</body>
+</html>
