@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 7</title>
+    <link rel="stylesheet" href="project7.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+</head>
+<body>
+    <!-- Back to Home Button -->
+    <a href="../index.html" class="back-button">Back to Home</a>
+
+    <!-- Main Content Container -->
+    <div class="content">
+        <!-- Title and Description Section -->
+        <div class="description">
+            <h1>Automatic Indoor Planter</h1>
+            <p>LeafSpace is a modular, adaptive plant care system that allows users to configure and expand growing units with ease, while intelligently adjusting light and irrigation based on plant type and environmental conditions—eliminating guesswork and making plant care intuitive, reliable, and aesthetically integrated.</p>
+        </div>
+
+        <!-- PDF Section -->
+        <div id="pdf-container" class="pdf-container">
+            <p class="loading">Loading PDF...</p>
+        </div>
+    </div>
+
+    <script>
+        const pdfUrl = 'leafspace.pdf'; // Ensure the PDF file path is correct
+        const container = document.getElementById('pdf-container');
+        const loadingText = document.querySelector('.loading');
+
+        // Load the PDF
+        pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
+            loadingText.textContent = `Rendering ${pdf.numPages} pages...`;
+
+            const renderPage = (pageNum) => {
+                pdf.getPage(pageNum).then(function (page) {
+                    const viewport = page.getViewport({ scale: 1.5 });
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+
+                    // Render PDF page onto canvas
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport,
+                    };
+
+                    page.render(renderContext).promise.then(function () {
+                        const img = document.createElement('img');
+                        img.src = canvas.toDataURL('image/png'); // Convert canvas to image
+                        container.appendChild(img);
+
+                        if (pageNum < pdf.numPages) {
+                            renderPage(pageNum + 1);
+                        } else {
+                            loadingText.style.display = 'none'; // Hide loading text when done
+                        }
+                    });
+                });
+            };
+
+            renderPage(1); // Start rendering from page 1
+        }).catch(function (error) {
+            console.error('Error loading PDF:', error);
+            loadingText.textContent = 'Failed to load PDF.';
+        });
+    </script>
+</body>
+</html>
